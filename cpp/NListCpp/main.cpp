@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "list.h"
 #include "nlist.h"
 
 using namespace std;
@@ -15,35 +16,36 @@ int main()
     int tm, szHalf = (int)(sz/2), szQater = (int)(sz/4);
 
     tm = clock();
-    NList<int> nl = NList<int>(cp);
-    for(int i = 0; i < sz; i++) nl.add(i+1);
-    cout << "Nl creation: " << clock() - tm << "ms\n\n";
+    List<int, OneDirectional> l1 = List<int, OneDirectional>();
+    //l1ist<int> n1 = l1ist<int>(cp);
+    for(int i = 0; i < sz; i++) l1.add(i+1);
+    cout << "l1 creation: " << clock() - tm << "ms\n\n";
 
-    printf("Nl size: %.1fmb\n\n", nl.sizeOf() / 1024. / 1024);
-
-    tm = clock();
-    cout << nl[szQater];
-    cout << "\nNl get 1/4: " << clock() - tm << "ms\n\n";
+    printf("l1 size: %.1fmb\n\n", l1.sizeOf() / 1024. / 1024);
 
     tm = clock();
-    cout << nl[szHalf];
-    cout << "\nNl get 1/2: " << clock() - tm << "ms\n\n";
+    cout << l1[szQater];
+    cout << "\nl1 get 1/4: " << clock() - tm << "ms\n\n";
 
     tm = clock();
-    cout << nl[szHalf + szQater];
-    cout << "\nNl get 3/4: " << clock() - tm << "ms\n\n";
+    cout << l1[szHalf];
+    cout << "\nl1 get 1/2: " << clock() - tm << "ms\n\n";
+
+    tm = clock();
+    cout << l1[szHalf + szQater];
+    cout << "\nl1 get 3/4: " << clock() - tm << "ms\n\n";
 
     int g = 1;
     while(g > 0){
         tm = clock();
-        cout << nl[g];
-        printf("\nNl get %d: %dms\n\n", g, clock() - tm);
+        cout << l1[g];
+        printf("\nl1 get %d: %dms\n\n", g, clock() - tm);
 
         cout << "Get: ";
         cin >> g;
     }
 
     tm = clock();
-    nl.clear();
-    cout << "Nl clear: " << clock() - tm << "ms\n\n";
+    l1.clear();
+    cout << "l1 clear: " << clock() - tm << "ms\n\n";
 }

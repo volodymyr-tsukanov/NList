@@ -4,13 +4,15 @@
 using namespace std;
 
 
-item *List::endItem() const
+template<typename Type, ListType listType>
+const typename List<Type, listType>::item* List<Type, listType>::endItem()
 {
     if(listType == OneDirectional || listType == MultiDirectional) return nullptr;
     else return head;
 }
 
-List::List()
+template<typename Type, ListType listType>
+List<Type, listType>::List()
 {
     head = nullptr;
     tail = nullptr;
@@ -18,7 +20,8 @@ List::List()
     size = 0;
 }
 
-List::~List()
+template<typename Type, ListType listType>
+List<Type, listType>::~List()
 {
     clear();
 
@@ -26,14 +29,16 @@ List::~List()
     delete tail;
 }
 
-void List::operator=(const List& otr)
+template<typename Type, ListType listType>
+void List<Type, listType>::operator=(const List& otr)
 {
     head = otr.head;
     tail = otr.tail;
 
     size = otr.size;
 }
-void List::operator+=(const List& otr)
+template<typename Type, ListType listType>
+void List<Type, listType>::operator+=(const List& otr)
 {
     item* temp = otr.head;
     for(int i = 0; i < otr.size; i++)
@@ -43,7 +48,8 @@ void List::operator+=(const List& otr)
         temp = temp->next;
     }
 }
-bool List::operator==(const List& otr)
+template<typename Type, ListType listType>
+bool List<Type, listType>::operator==(const List& otr)
 {
     if(size == otr.size)
     {
@@ -64,7 +70,8 @@ bool List::operator==(const List& otr)
     }
     else return false;
 }
-List List::operator+(List& otr)
+template<typename Type, ListType listType>
+typename List<Type, listType>::List List<Type, listType>::operator+(List& otr)
 {
     List res = clone();
 
@@ -78,22 +85,26 @@ List List::operator+(List& otr)
 
     return res;
 }
-Type List::operator[](unsigned int index)
+template<typename Type, ListType listType>
+Type List<Type, listType>::operator[](unsigned int index)
 {
     return get(index);
 }
 
-bool List::isEmpty()
+template<typename Type, ListType listType>
+bool List<Type, listType>::isEmpty()
 {
     return head == nullptr && tail == nullptr;
 }
 
-int List::getSize()
+template<typename Type, ListType listType>
+int List<Type, listType>::getSize()
 {
     return size;
 }
 
-int List::sizeOf()
+template<typename Type, ListType listType>
+int List<Type, listType>::sizeOf()
 {
     if(listType == OneDirectional || listType == CycledOneDirectional)
         return size * (sizeof(Type) + sizeof(item));
@@ -102,7 +113,8 @@ int List::sizeOf()
         return size * (sizeof(Type) + 2*sizeof(item));
 }
 
-void List::add(Type value)
+template<typename Type, ListType listType>
+void List<Type, listType>::add(Type value)
 {
     item* it = new item;
     it->value = value;
@@ -123,7 +135,8 @@ void List::add(Type value)
 
     size++;
 }
-void List::addStart(Type value)
+template<typename Type, ListType listType>
+void List<Type, listType>::addStart(Type value)
 {
     item* it = new item;
     it->value = value;
@@ -136,7 +149,8 @@ void List::addStart(Type value)
 
     size++;
 }
-void List::addPosition(Type value, unsigned int position)
+template<typename Type, ListType listType>
+void List<Type, listType>::addPosition(Type value, unsigned int position)
 {
     if(position < size-1)
     {
@@ -167,7 +181,8 @@ void List::addPosition(Type value, unsigned int position)
     else add(value);
 }
 
-Type List::getStart()
+template<typename Type, ListType listType>
+Type List<Type, listType>::getStart()
 {
     Type value;
 
@@ -178,7 +193,8 @@ Type List::getStart()
 
     return value;
 }
-Type List::getEnd()
+template<typename Type, ListType listType>
+Type List<Type, listType>::getEnd()
 {
     Type value;
 
@@ -189,7 +205,8 @@ Type List::getEnd()
 
     return value;
 }
-Type List::get(unsigned int position)
+template<typename Type, ListType listType>
+Type List<Type, listType>::get(unsigned int position)
 {
     Type value;
 
@@ -213,7 +230,8 @@ Type List::get(unsigned int position)
     return value;
 }
 
-void List::removeStart()
+template<typename Type, ListType listType>
+void List<Type, listType>::removeStart()
 {
     if(!isEmpty())
     {
@@ -241,7 +259,8 @@ void List::removeStart()
         size--;
     }
 }
-void List::removeEnd()
+template<typename Type, ListType listType>
+void List<Type, listType>::removeEnd()
 {
     if(!isEmpty())
     {
@@ -276,7 +295,8 @@ void List::removeEnd()
         size--;
     }
 }
-void List::remove(unsigned int position)
+template<typename Type, ListType listType>
+void List<Type, listType>::remove(unsigned int position)
 {
     if(!isEmpty())
     {
@@ -303,7 +323,8 @@ void List::remove(unsigned int position)
     }
 }
 
-void List::clear()
+template<typename Type, ListType listType>
+void List<Type, listType>::clear()
 {
     while(!isEmpty())
     {
@@ -325,7 +346,8 @@ void List::clear()
     size = 0;
 }
 
-List List::clone()
+template<typename Type, ListType listType>
+typename List<Type, listType>::List List<Type, listType>::clone()
 {
     List _clone = List();
 
@@ -340,7 +362,8 @@ List List::clone()
     return _clone;
 }
 
-void List::print(char separator = ' ')
+template<typename Type, ListType listType>
+void List<Type, listType>::print(char separator)
 {
     item* temp = head;
 

@@ -5,6 +5,10 @@
 1698333251 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.h
 	"list.h"
 
-1698334198 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
+1698335574 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
 	<iostream>
+
+1698340289 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.cpp
+	<iostream>
+	"list.h"
 
