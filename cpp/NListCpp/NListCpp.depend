@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1698333265 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.cpp
+	"nlist.h"
+
+1698333251 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.h
+	"list.h"
+
+1698334198 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
+	<iostream>
+

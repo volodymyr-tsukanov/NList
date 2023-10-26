@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "nlist.h"
 
 using namespace std;
