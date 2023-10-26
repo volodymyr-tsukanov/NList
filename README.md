@@ -1,6 +1,5 @@
 # NList
-Custom List class
-C++, Code::Blocks</br></br>
+Custom List class</br></br>
 
 
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
