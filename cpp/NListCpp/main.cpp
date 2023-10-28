@@ -7,11 +7,7 @@ using namespace std;
 
 int main()
 {
-    List<int, OneDirectional> l1 = List<int, OneDirectional>();
-    l1.add(42);
-    l1.print();
-    l1.clear();
-    /*unsigned int sz = 999999, cp = 25000;
+    unsigned int sz = 999999, cp = 25000;
     cout << "Size: ";
     cin >> sz;
     cout << "Capacity: ";
@@ -51,5 +47,5 @@ int main()
 
     tm = clock();
     l1.clear();
-    cout << "l1 clear: " << clock() - tm << "ms\n\n";*/
+    cout << "l1 clear: " << clock() - tm << "ms\n\n";
 }
