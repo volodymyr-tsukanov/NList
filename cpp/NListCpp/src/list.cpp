@@ -1,19 +1,10 @@
-#include <iostream>
 #include "list.h"
 
 using namespace std;
 
 
 template<typename Type, ListType listType>
-const typename List<Type, listType>::item* List<Type, listType>::endItem()
-{
-    if(listType == OneDirectional || listType == MultiDirectional) return nullptr;
-    else return head;
-}
-
-template<typename Type, ListType listType>
-List<Type, listType>::List()
-{
+List<Type, listType>::List(){
     head = nullptr;
     tail = nullptr;
 

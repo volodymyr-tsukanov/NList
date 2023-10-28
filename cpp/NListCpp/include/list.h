@@ -6,8 +6,10 @@
 
 enum ListType{ OneDirectional = 1, MultiDirectional = 6, CycledOneDirectional = 11, CycledMultiDirectional = 16 };
 
+
 template<typename Type, ListType listType>
-class List{
+class List
+{
 protected:
     struct item{
         Type value;
@@ -22,7 +24,10 @@ private:
 
     int size;
 
-    const item* endItem();
+    const item* endItem(){
+        if(listType == OneDirectional || listType == MultiDirectional) return nullptr;
+        else return head;
+    }
 
 public:
     List();

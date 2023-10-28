@@ -1,14 +1,25 @@
 # depslib dependency file v1.0
-1698333265 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.cpp
+1698340969 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.cpp
 	"nlist.h"
 
-1698333251 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.h
+1698340969 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.h
 	"list.h"
 
-1698335574 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
+1698484299 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
 	<iostream>
 
-1698340289 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.cpp
+1698484618 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.cpp
 	<iostream>
+	"list.h"
+
+1698486940 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
+	<iostream>
+	<ctime>
+	"list.h"
+
+1698487472 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\list.h
+	<iostream>
+
+1698487459 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\list.cpp
 	"list.h"
 

@@ -1,14 +1,17 @@
 #include <iostream>
 #include <ctime>
 #include "list.h"
-#include "nlist.h"
 
 using namespace std;
 
 
 int main()
 {
-    unsigned int sz = 999999, cp = 25000;
+    List<int, OneDirectional> l1 = List<int, OneDirectional>();
+    l1.add(42);
+    l1.print();
+    l1.clear();
+    /*unsigned int sz = 999999, cp = 25000;
     cout << "Size: ";
     cin >> sz;
     cout << "Capacity: ";
@@ -17,6 +20,7 @@ int main()
 
     tm = clock();
     List<int, OneDirectional> l1 = List<int, OneDirectional>();
+    l1.print();
     //l1ist<int> n1 = l1ist<int>(cp);
     for(int i = 0; i < sz; i++) l1.add(i+1);
     cout << "l1 creation: " << clock() - tm << "ms\n\n";
@@ -47,5 +51,5 @@ int main()
 
     tm = clock();
     l1.clear();
-    cout << "l1 clear: " << clock() - tm << "ms\n\n";
+    cout << "l1 clear: " << clock() - tm << "ms\n\n";*/
 }
