@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
-#include "list.h"
+#include "List.h"
+#include "NList.h"
 
 using namespace std;
 
@@ -16,8 +17,7 @@ int main()
 
     tm = clock();
     List<int, OneDirectional> l1 = List<int, OneDirectional>();
-    l1.print();
-    //l1ist<int> n1 = l1ist<int>(cp);
+    NList<int> n1 = NList<int>(cp);
     for(int i = 0; i < sz; i++) l1.add(i+1);
     cout << "l1 creation: " << clock() - tm << "ms\n\n";
 

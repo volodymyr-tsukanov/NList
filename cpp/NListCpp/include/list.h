@@ -125,19 +125,7 @@ public:
 
         size++;
     }
-    void addStart(Type value){
-        item* it = new item;
-        it->value = value;
-        it->next = head;
-        if(listType == MultiDirectional) it->prev = nullptr;
-        if(listType == CycledMultiDirectional) it->prev = tail;
-        head = it;
-
-        if(tail == nullptr) tail = it;
-
-        size++;
-    }
-    void addPosition(Type value, unsigned int position){
+    void add(Type value, unsigned int position){
         if(position < size-1){
             if(position == 0) addStart(value);
             else{
@@ -161,6 +149,18 @@ public:
             }
         }
         else add(value);
+    }
+    void addStart(Type value){
+        item* it = new item;
+        it->value = value;
+        it->next = head;
+        if(listType == MultiDirectional) it->prev = nullptr;
+        if(listType == CycledMultiDirectional) it->prev = tail;
+        head = it;
+
+        if(tail == nullptr) tail = it;
+
+        size++;
     }
 
     Type getStart(){
@@ -186,7 +186,7 @@ public:
 
         if(!isEmpty()){
             if(position == 0) return getStart();
-            if(position == size-1) return getEnd();
+            if(position >= size-1) return getEnd();
             else{
                 item* temp = head;
 
@@ -257,7 +257,7 @@ public:
     void remove(unsigned int position){
         if(!isEmpty()){
             if(position == 0) removeStart();
-            else if(position == size-1) removeEnd();
+            else if(position >= size-1) removeEnd();
             else{
                 item* temp = head;
 
@@ -323,5 +323,6 @@ public:
         std::cout << std::endl;
     }
 };
+
 
 #endif // LIST_H

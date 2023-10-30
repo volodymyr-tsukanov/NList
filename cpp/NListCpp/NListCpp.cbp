@@ -34,9 +34,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/list.h" />
+		<Unit filename="include/NList.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/list.cpp" />
+		<Unit filename="src/NList.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

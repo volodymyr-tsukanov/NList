@@ -12,14 +12,22 @@
 	<iostream>
 	"list.h"
 
-1698488329 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
+1698656984 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
 	<iostream>
 	<ctime>
-	"list.h"
+	"List.h"
+	"NList.h"
 
-1698488309 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\list.h
+1698657203 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\list.h
 	<iostream>
 
-1698488228 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\list.cpp
-	"list.h"
+1698657175 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\list.cpp
+	"List.h"
+
+1698657011 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\nlist.h
+	<iostream>
+	"List.h"
+
+1698657103 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\nlist.cpp
+	"NList.h"
 
