@@ -34,8 +34,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/List.h" />
 		<Unit filename="include/NList.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/List.cpp" />
 		<Unit filename="src/NList.cpp" />
 		<Extensions />
 	</Project>

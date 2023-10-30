@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <List>
 #include "List.h"
 #include "NList.h"
 
@@ -16,9 +17,8 @@ int main()
     int tm, szHalf = (int)(sz/2), szQater = (int)(sz/4);
 
     tm = clock();
-    List<int, OneDirectional> l1 = List<int, OneDirectional>();
-    NList<int> n1 = NList<int>(cp);
-    for(int i = 0; i < sz; i++) l1.add(i+1);
+    list<int> l1 = list<int>(sz);
+    for(int i = 0; i < sz; i++) l1.insert(i);
     cout << "l1 creation: " << clock() - tm << "ms\n\n";
 
     printf("l1 size: %.1fmb\n\n", l1.sizeOf() / 1024. / 1024);
