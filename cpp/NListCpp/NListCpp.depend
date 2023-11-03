@@ -31,3 +31,10 @@
 1698838887 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\nlist.cpp
 	"NList.h"
 
+1698839517 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\dnarray.cpp
+	"DNArray.h"
+
+1699002039 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\dnarray.h
+	<iostream>
+	<string>
+

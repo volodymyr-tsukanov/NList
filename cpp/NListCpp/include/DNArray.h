@@ -9,7 +9,7 @@ class DNArray{
 public:
     enum ElementTypes {Boolean = 3, Char = 21, Integer = 11, Float = 13 , Double = 15, String = 31};
 
-private:
+
     class ArrayElement{
     public:
         ArrayElement(){
@@ -19,12 +19,10 @@ private:
         }
 
 
-        ArrayElement& operator = (const ArrayElement &_rhs){
-            status = _rhs.status;
-            type = _rhs.type;
-            //set(_rhs.get());
-
-            return *this;
+        void operator=(const ArrayElement& otr){
+            status = otr.status;
+            type = otr.type;
+            set(otr.type, otr.get());
         }
 
     private:
@@ -50,7 +48,7 @@ private:
 
     public:
         template <typename T> T get(){
-            /*switch(T){
+            switch(T){
                 case Boolean:
                     return &data._boolean;
                     break;
@@ -69,11 +67,11 @@ private:
                 case String:
                     return &data._string;
                     break;
-            }*/
+            }
         }
 
         void set(ElementTypes _type, int value){
-            /*switch(_type){
+            switch(_type){
                 case Boolean:
                     data._boolean = valueAdress;
                     break;
@@ -92,7 +90,7 @@ private:
                 case String:
                     return &data._string;
                     break;
-            }*/
+            }
         }
     };
 
@@ -183,9 +181,9 @@ public:
 
     template <typename T> T get(int index){
         if(index > -1 && index < _size){
-            //ArrayElement element = _array[index];
+            ArrayElement element = _array[index];
 
-            //return element.value;
+            return element.value;
         }
 
         return NULL;
@@ -196,8 +194,8 @@ public:
 
         if(_size < _capacity){
             ArrayElement element;
-            //element.status = ArrayElement::active;
-            //element.value = _element;
+            element.status = ArrayElement::active;
+            element.value = _element;
 
             _array[_size] = element;
             _size++;
@@ -211,14 +209,14 @@ public:
 
     void remove(int index){
         if(index > -1 && index < _size){
-            /*ArrayElement element = _array[index];
+            ArrayElement element = _array[index];
             element.status = element.inactive;
             _size--;
 
             if(_inactiveSize < _capacity/5){
                 _array[_capacity - _inactiveSize - 1] = element;
                 _inactiveSize++;
-            }*/
+            }
 
             organize(index, _size, 1);
         }
