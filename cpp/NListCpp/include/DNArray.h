@@ -29,11 +29,6 @@ public:
         enum Statuses {none = 0, active = 1, inactive = -1};
 
         union Data{
-            Data(){
-            }
-            ~Data(){
-            }
-
             bool _boolean;
             char _char;
             int _integer;
@@ -44,33 +39,30 @@ public:
 
         Statuses status;
         ElementTypes type;
-        Data data;
 
     public:
-        template <typename T> T get(){
-            switch(T){
+        template <typename T>
+        T get(ElementTypes et){
+            switch(et){
                 case Boolean:
-                    return &data._boolean;
-                    break;
+                    return static_cast<T>(Data._boolean);
                 case Char:
-                    return &data._char;
-                    break;
+                    return static_cast<T>(Data._char);
                 case Integer:
-                    return &data._integer;
-                    break;
+                    return static_cast<T>(Data._integer);
                 case Float:
-                    return &data._float;
-                    break;
+                    return static_cast<T>(Data._float);
                 case Double:
-                    return &data._double;
-                    break;
+                    return static_cast<T>(Data._double);
                 case String:
-                    return &data._string;
-                    break;
+                    return static_cast<T>(Data._string);
+                case default:
+                    return nullptr;
             }
         }
 
-        void set(ElementTypes _type, int value){
+        template<typename T>
+        void set(T value){
             switch(_type){
                 case Boolean:
                     data._boolean = valueAdress;
