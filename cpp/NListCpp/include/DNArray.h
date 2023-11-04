@@ -6,28 +6,13 @@
 
 
 class DNArray{
-public:
-    enum ElementTypes {Boolean = 3, Char = 21, Integer = 11, Float = 13 , Double = 15, String = 31};
-
-
+protected:
     class ArrayElement{
     public:
-        ArrayElement(){
-        }
+        enum ElementTypes {VOID = 1, BOOL = 3, CHAR = 21, INTEGER = 11, FLOAT = 13 , DOUBLE = 15, STRING = 31};
+        enum Statuses {NONE = 0, ACTIVE = 1, INACTIVE = -1};
 
-        ~ArrayElement(){
-        }
-
-
-        void operator=(const ArrayElement& otr){
-            status = otr.status;
-            type = otr.type;
-            set(otr.type, otr.get());
-        }
-
-    private:
-        enum Statuses {none = 0, active = 1, inactive = -1};
-
+    protected:
         union Data{
             bool _boolean;
             char _char;
@@ -41,45 +26,68 @@ public:
         ElementTypes type;
 
     public:
-        template <typename T>
-        T get(ElementTypes et){
-            switch(et){
-                case Boolean:
-                    return static_cast<T>(Data._boolean);
-                case Char:
+        ArrayElement(){
+            status = NONE;
+            type = VOID;
+        }
+
+        ~ArrayElement(){
+        }
+
+
+        void operator=(const ArrayElement& otr){
+            status = otr.status;
+            type = otr.type;
+        }
+
+        void* get(ElementTypes et){
+            switch(status)
+            {
+                case ACTIVE:
+                switch(et)
+                {
+                case BOOL:
+                    return &data._boolean;
+                case CHAR:
                     return static_cast<T>(Data._char);
-                case Integer:
+                case INTEGER:
                     return static_cast<T>(Data._integer);
-                case Float:
+                case FLOAT:
                     return static_cast<T>(Data._float);
-                case Double:
+                case DOUBLE:
                     return static_cast<T>(Data._double);
-                case String:
+                case STRING:
                     return static_cast<T>(Data._string);
-                case default:
+            case default:
                     return nullptr;
+                }
+                break;
+            case INACTIVE:
+                break;
+            case default:
+                break;
             }
         }
 
         template<typename T>
         void set(T value){
             switch(_type){
-                case Boolean:
+                case BOOL:
                     data._boolean = valueAdress;
                     break;
-                case Char:
+                case CHAR:
                     return &data._char;
                     break;
-                case Integer:
+                case INTEGER:
                     return &data._integer;
                     break;
-                case Float:
+                case FLOAT:
                     return &data._float;
                     break;
-                case Double:
+                case DOUBLE:
                     return &data._double;
                     break;
-                case String:
+                case STRING:
                     return &data._string;
                     break;
             }
@@ -186,7 +194,7 @@ public:
 
         if(_size < _capacity){
             ArrayElement element;
-            element.status = ArrayElement::active;
+            element.status = ArrayElement::ACTIVE;
             element.value = _element;
 
             _array[_size] = element;
@@ -202,7 +210,7 @@ public:
     void remove(int index){
         if(index > -1 && index < _size){
             ArrayElement element = _array[index];
-            element.status = element.inactive;
+            element.status = element.INACTIVE;
             _size--;
 
             if(_inactiveSize < _capacity/5){
