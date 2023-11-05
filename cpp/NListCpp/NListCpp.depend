@@ -12,11 +12,11 @@
 	<iostream>
 	"list.h"
 
-1698656984 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
+1699200219 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
 	<iostream>
 	<ctime>
-	"List.h"
-	"NList.h"
+	<List>
+	"DNArray.h"
 
 1698838887 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\list.h
 	<iostream>
@@ -34,7 +34,8 @@
 1698839517 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\dnarray.cpp
 	"DNArray.h"
 
-1699103662 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\dnarray.h
+1699200095 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\dnarray.h
 	<iostream>
 	<string>
+	<typeindex>
 

@@ -35,12 +35,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/DNArray.h" />
-		<Unit filename="include/NList.h" />
-		<Unit filename="include/list.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/DNArray.cpp" />
-		<Unit filename="src/NList.cpp" />
-		<Unit filename="src/list.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
