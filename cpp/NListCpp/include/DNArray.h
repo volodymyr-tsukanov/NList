@@ -47,18 +47,25 @@ protected:
             case ACTIVE:
                 if(typeid(T).hash_code() != type){}
 
+                std::cout << "get: " << data;
+
                 return *static_cast<T*>(data);
             case INACTIVE:
                 break;
             default:
                 break;
             }
+
+            return NULL;
         }
 
         template<typename T>
         void set(T value){
+            status = ACTIVE;
             type = typeid(value).hash_code();
             data = &value;
+
+            std::cout << "set: " << data;
         }
 
         void deactivate(){
@@ -87,10 +94,12 @@ protected:
     }
 
     void expand(int expandCapacity){
+        std::cout << "expand to " << expandCapacity;
         if(capacity + expandCapacity > capacityMax) return;
         capacity += expandCapacity;
 
         items = (Item*) realloc(items, capacity * sizeof(Item));
+        std::cout << "expand succes";
     }
     void expand(){
         int expandCapacity = 1;
@@ -119,7 +128,7 @@ public:
     }
 
     ~DNArray(){
-        clear();
+        delete [] items;
     }
 
 
@@ -129,6 +138,7 @@ public:
         capacityMax = otr.capacityMax;
         items = otr.items;
     }
+
     Item operator[](const int index){
         return get(index);
     }
@@ -139,7 +149,7 @@ public:
     }
 
     int sizeInBytes(){
-        return sizeof(items);
+        return sizeof(items) * _size;
     }
 
     std::string toString(int fromIndex, int toIndex){
@@ -177,8 +187,10 @@ public:
         if(capacity > _size*5) expand(-_size);
 
         if(_size < capacity){
-            Item item;
+            Item item = Item();
             item.set(value);
+
+            std::cout << "set item succes\n";
 
             items[_size] = item;
             _size++;

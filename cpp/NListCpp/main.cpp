@@ -1,6 +1,5 @@
 #include <iostream>
 #include <ctime>
-#include <List>
 #include "DNArray.h"
 
 using namespace std;
@@ -15,4 +14,8 @@ int main()
     dna.add<char>('O');
 
     cout << dna[0].getTypeHash() << ": " << dna[0].get<int>() << endl;
+
+    dna.clear();
+
+    return 0;
 }
