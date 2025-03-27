@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1698340969 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.cpp
+	"nlist.h"
+
+1698340969 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\nlist.h
+	"list.h"
+
+1698484299 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.h
+	<iostream>
+
+1698484618 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\list.cpp
+	<iostream>
+	"list.h"
+
+1699907823 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\main.cpp
+	<iostream>
+	<ctime>
+	"DNArray.h"
+
+1698838887 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\list.h
+	<iostream>
+
+1698838887 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\list.cpp
+	"List.h"
+
+1698838887 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\nlist.h
+	<iostream>
+	"List.h"
+
+1698838887 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\nlist.cpp
+	"NList.h"
+
+1698839517 source:c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\src\dnarray.cpp
+	"DNArray.h"
+
+1699908945 c:\users\vladimr\desktop\git\nlist\cpp\nlistcpp\include\dnarray.h
+	<iostream>
+	<string>
+	<typeindex>
+

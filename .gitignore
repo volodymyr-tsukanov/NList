@@ -1,0 +1,7 @@
+# Folders
+cpp/NList/bin/Debug/*
+cpp/NList/obj/Debug/*
+
+# Extentions
+*.exe
+*.o

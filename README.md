@@ -1,5 +1,12 @@
 # NList
-Custom List class <br><br>
+Custom List class made for storing and operating with large amounts of items.
+Has better perfomance while operating with items, takes more space, flexible _anchor points_ (that is what boosts up perfomance),
+longer creation&deletion times
+
+# DNArray
+Custom Array class made for storing multi types in one array (like Python array) <br>
+
+**C++**, **Code::Blocks** <br><br>
 
 
 ![Paused](https://img.shields.io/badge/status-Frozen%20🥶-ADD8E6?style=for-the-badge&logo=github) <br>
