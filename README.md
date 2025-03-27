@@ -1,6 +1,8 @@
 # NList
-Custom List class</br></br>
+Custom List class <br><br>
 
+
+![Paused](https://img.shields.io/badge/status-Frozen%20🥶-ADD8E6?style=for-the-badge&logo=github) <br>
 
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
 
