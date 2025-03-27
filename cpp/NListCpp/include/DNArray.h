@@ -3,109 +3,128 @@
 
 #include <iostream>
 #include <string>
-#include <typeindex>
 
 
 class DNArray{
 protected:
-    class Item{
+    class ArrayElement{
     public:
+        enum ElementTypes {VOID = 1, BOOL = 3, CHAR = 21, INTEGER = 11, FLOAT = 13 , DOUBLE = 15, STRING = 31};
         enum Statuses {NONE = 0, ACTIVE = 1, INACTIVE = -1};
 
     protected:
+        union Data{
+            bool _boolean;
+            char _char;
+            int _integer;
+            float _float;
+            double _double;
+            std::string _string;
+        };
+
         Statuses status;
-        size_t type;
-        void* data;
+        ElementTypes type;
 
     public:
-        Item(){
+        ArrayElement(){
             status = NONE;
-            type = 0;
-            data = nullptr;
+            type = VOID;
         }
 
-        ~Item(){
-            delete data;
+        ~ArrayElement(){
         }
 
 
-        void operator=(const Item& otr){
+        void operator=(const ArrayElement& otr){
             status = otr.status;
             type = otr.type;
-            data = otr.data;
         }
 
-
-        size_t getTypeHash(){
-            return type;
-        }
-
-        template<typename T>
-        T get(){
+        void* get(ElementTypes et){
             switch(status)
             {
-            case ACTIVE:
-                if(typeid(T).hash_code() != type){}
-
-                std::cout << "get: " << data;
-
-                return *static_cast<T*>(data);
+                case ACTIVE:
+                switch(et)
+                {
+                case BOOL:
+                    return &data._boolean;
+                case CHAR:
+                    return static_cast<T>(Data._char);
+                case INTEGER:
+                    return static_cast<T>(Data._integer);
+                case FLOAT:
+                    return static_cast<T>(Data._float);
+                case DOUBLE:
+                    return static_cast<T>(Data._double);
+                case STRING:
+                    return static_cast<T>(Data._string);
+            case default:
+                    return nullptr;
+                }
+                break;
             case INACTIVE:
                 break;
-            default:
+            case default:
                 break;
             }
-
-            return NULL;
         }
 
         template<typename T>
         void set(T value){
-            status = ACTIVE;
-            type = typeid(value).hash_code();
-            data = &value;
-
-            std::cout << "set: " << data;
-        }
-
-        void deactivate(){
-            status = INACTIVE;
+            switch(_type){
+                case BOOL:
+                    data._boolean = valueAdress;
+                    break;
+                case CHAR:
+                    return &data._char;
+                    break;
+                case INTEGER:
+                    return &data._integer;
+                    break;
+                case FLOAT:
+                    return &data._float;
+                    break;
+                case DOUBLE:
+                    return &data._double;
+                    break;
+                case STRING:
+                    return &data._string;
+                    break;
+            }
         }
     };
 
 
-    const long long int capacityDefault = 10;
-    long long int _size, inactiveSize, capacity, capacityMax = 9999999999;
+    const long int capacityDefault = 10;
+    long int _size, _inactiveSize, _capacity, _capacityMax = 9999999999;
 
-    Item* items;
+    ArrayElement* _array;
 
 
     void initialize(){
-        items = new Item[capacity];
+        _array = new ArrayElement[_capacity];
 
         _size = 0;
-        inactiveSize = 0;
+        _inactiveSize = 0;
     }
 
     void organize(int fromIndex, int toIndex, int order){
         for(int i = 0; i < abs(toIndex - fromIndex); i++){
-            items[fromIndex + i] = items[fromIndex+order + i];
+            _array[fromIndex + i] = _array[fromIndex+order + i];
         }
     }
 
     void expand(int expandCapacity){
-        std::cout << "expand to " << expandCapacity;
-        if(capacity + expandCapacity > capacityMax) return;
-        capacity += expandCapacity;
+        if(_capacity + expandCapacity > _capacityMax) return;
+        _capacity += expandCapacity;
 
-        items = (Item*) realloc(items, capacity * sizeof(Item));
-        std::cout << "expand succes";
+        _array = (ArrayElement*) realloc(_array, _capacity * sizeof(ArrayElement));
     }
     void expand(){
         int expandCapacity = 1;
 
         for(int p = 50; p > 0; p--){
-            if(int(capacity+_size*p/100) < capacityMax){
+            if(int(_capacity+_size*p/100) < _capacityMax){
                 expandCapacity = _size*p/100;
 
                 break;
@@ -117,30 +136,18 @@ protected:
 
 public:
     DNArray(){
-        capacity = capacityDefault;
+        _capacity = capacityDefault;
 
         initialize();
     }
     DNArray(int capacity){
-        capacity < capacityMax ? capacity = capacity : capacity = capacityMax;
+        capacity < _capacityMax ? _capacity = capacity : _capacity = _capacityMax;
 
         initialize();
     }
 
     ~DNArray(){
-        delete [] items;
-    }
-
-
-    void operator=(const DNArray& otr){
-        _size = otr._size;
-        capacity = otr.capacity;
-        capacityMax = otr.capacityMax;
-        items = otr.items;
-    }
-
-    Item operator[](const int index){
-        return get(index);
+        clear();
     }
 
 
@@ -149,12 +156,12 @@ public:
     }
 
     int sizeInBytes(){
-        return sizeof(items) * _size;
+        return sizeof(_array);
     }
 
     std::string toString(int fromIndex, int toIndex){
         std::string output = "[";
-        if(fromIndex > -1 && toIndex < capacity){
+        if(fromIndex > -1 && toIndex < _capacity){
             //output += to_string(_array[fromIndex].get());
             for(int i = fromIndex+1; i <= toIndex; i++){
                 //output += ", " + to_string(_array[i].value);
@@ -168,49 +175,47 @@ public:
         return toString(0, _size-1);
     }
     std::string toString(bool all){
-        return toString(0, capacity-1);
+        return toString(0, _capacity-1);
     }
 
 
-    Item get(int index){
+    template <typename T> T get(int index){
         if(index > -1 && index < _size){
-            Item item = items[index];
+            ArrayElement element = _array[index];
 
-            return item;
+            return element.value;
         }
 
-        return Item();
+        return NULL;
     }
 
-    template<typename T>
-    void add(T value){
-        if(capacity > _size*5) expand(-_size);
+    template <typename T> void add(T _element){
+        if(_capacity > _size*5) expand(-_size);
 
-        if(_size < capacity){
-            Item item = Item();
-            item.set(value);
+        if(_size < _capacity){
+            ArrayElement element;
+            element.status = ArrayElement::ACTIVE;
+            element.value = _element;
 
-            std::cout << "set item succes\n";
-
-            items[_size] = item;
+            _array[_size] = element;
             _size++;
         }
-        else if(capacity < capacityMax){
+        else if(_capacity < _capacityMax){
             expand();
 
-            add(value);
+            add(_element);
         }
     }
 
     void remove(int index){
         if(index > -1 && index < _size){
-            Item item = items[index];
-            item.deactivate();
+            ArrayElement element = _array[index];
+            element.status = element.INACTIVE;
             _size--;
 
-            if(inactiveSize < capacity/5){
-                items[capacity - inactiveSize - 1] = item;
-                inactiveSize++;
+            if(_inactiveSize < _capacity/5){
+                _array[_capacity - _inactiveSize - 1] = element;
+                _inactiveSize++;
             }
 
             organize(index, _size, 1);
@@ -218,7 +223,7 @@ public:
     }
 
     void clear(){
-        delete [] items;
+        delete [] _array;
 
         initialize();
     }

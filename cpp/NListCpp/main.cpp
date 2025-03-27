@@ -1,21 +1,51 @@
 #include <iostream>
 #include <ctime>
-#include "DNArray.h"
+#include <List>
+#include "List.h"
+#include "NList.h"
 
 using namespace std;
 
 
 int main()
 {
-    DNArray dna = DNArray(100);
-    dna.add<int>(12);
-    dna.add<bool>(true);
-    dna.add<float>(2.7);
-    dna.add<char>('O');
+    unsigned int sz = 999999, cp = 25000;
+    cout << "Size: ";
+    cin >> sz;
+    cout << "Capacity: ";
+    cin >> cp;
+    int tm, szHalf = (int)(sz/2), szQater = (int)(sz/4);
 
-    cout << dna[0].getTypeHash() << ": " << dna[0].get<int>() << endl;
+    tm = clock();
+    list<int> l1 = list<int>(sz);
+    for(int i = 0; i < sz; i++) l1.insert(i);
+    cout << "l1 creation: " << clock() - tm << "ms\n\n";
 
-    dna.clear();
+    printf("l1 size: %.1fmb\n\n", l1.sizeOf() / 1024. / 1024);
 
-    return 0;
+    tm = clock();
+    cout << l1[szQater];
+    cout << "\nl1 get 1/4: " << clock() - tm << "ms\n\n";
+
+    tm = clock();
+    cout << l1[szHalf];
+    cout << "\nl1 get 1/2: " << clock() - tm << "ms\n\n";
+
+    tm = clock();
+    cout << l1[szHalf + szQater];
+    cout << "\nl1 get 3/4: " << clock() - tm << "ms\n\n";
+
+    int g = 1;
+    while(g > 0){
+        tm = clock();
+        cout << l1[g];
+        printf("\nl1 get %d: %dms\n\n", g, clock() - tm);
+
+        cout << "Get: ";
+        cin >> g;
+    }
+
+    tm = clock();
+    l1.clear();
+    cout << "l1 clear: " << clock() - tm << "ms\n\n";
 }
